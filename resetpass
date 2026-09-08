@@ -1,0 +1,17 @@
+#!/bin/bash
+
+<<info 
+this scripts reset user password
+info
+
+read -p "enter the username: " username
+user=$(cat /etc/passwd | grep $username | wc | awk '{print $1}' )
+
+if [ $user == 1 ];
+then
+	read -p "enter the password: " password
+	echo -e "$password\n$password" | sudo passwd $username
+	echo "password reset successfully"
+else
+	echo "entered username doesn't exist"
+fi

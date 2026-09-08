@@ -1,0 +1,32 @@
+#!/bin/bash
+
+function createuser {
+
+echo "===== user creation===="
+read -p "Enter the username: " username
+read -p "Enter the password: " password
+
+sudo useradd -m "$username"
+
+echo -e "$password\n$password" | sudo passwd "$username"
+
+echo "===============user created=========="
+}
+function userdelete {
+sudo userdel $username
+
+echo "=========user ddeleted==============="
+}
+function usercheck {
+cat /etc/passwd | grep "$username" | wc | awk '{ print $1 }'
+
+echo "as the user deleted the wc is zero"
+}
+
+
+for((i=1; i<=2; i++))
+do
+	createuser
+	userdelete
+	usercheck
+done
