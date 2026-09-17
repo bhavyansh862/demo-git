@@ -1,5 +1,11 @@
 #!/bin/bash
 
+<<detail
+
+this is comment
+
+detail
+
 <<info 
 this scripts reset user password
 info
